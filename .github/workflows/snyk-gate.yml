@@ -1,0 +1,38 @@
+name: Snyk Gate
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install --ignore-scripts
+
+      - name: Snyk SCA - HARD STOP on high
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: Snyk Code (SAST + secrets) - HARD STOP on high
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+          args: --severity-threshold=high --sarif-file-output=snyk-code.sarif
+
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with: { sarif_file: snyk-code.sarif }
