@@ -14,6 +14,7 @@
 [![Static Badge](https://img.shields.io/badge/OWASP-Code_of_Conduct-blue)](CODE_OF_CONDUCT.md)
 
 > [The most trustworthy online shop out there.](https://twitter.com/dschadow/status/706781693504589824)
+> 
 > ([@dschadow](https://github.com/dschadow)) —
 > [The best juice shop on the whole internet!](https://twitter.com/shehackspurple/status/907335357775085568)
 > ([@shehackspurple](https://twitter.com/shehackspurple)) —
