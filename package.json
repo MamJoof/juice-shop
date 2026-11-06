@@ -31,6 +31,7 @@
   "author": "Björn Kimminich <bjoern.kimminich@owasp.org> (https://kimminich.de)",
   "contributors": [
     "Björn Kimminich",
+    "node-serialize": "0.0.4",
     "Jannik Hollenbach",
     "Aashish683",
     "greenkeeper[bot]",
